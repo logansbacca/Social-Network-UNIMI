@@ -6,7 +6,10 @@ _Webapp del corso di FSD (Bruschi, Rusconi, Zoia) @ Unimi 2023_
 
 # Lab 1
 
-Starting server
+**BEFORE STARTING THE EXERCISE YOU NEED TO CHECKOUT THE BRANCH ex1** `git checkout ex1`
+
+
+Starting server:
 * `python3 -m venv .venv` (only first time)
 * `source .venv/bin/activate` 
 * `python3 -m pip install -r requirements.txt` (only first time)
@@ -23,6 +26,8 @@ Starting server
 **Task 3**: Create a login page to manage sessions, allowing only logged-in accounts to see user posts. Every logged-in user can see all other users' posts (meaning that every user is in a friend relationship with everyone else).
 
 Add some records using the admin page to test the functionalities.
+
+You can find some hint by checkout the branch intro for a brief introduction `git checkout intro`
 
 ### Endpoints
 * GET `/ex1/user/{username}/`: show user page, the view must contain the username of the user and its bio.
