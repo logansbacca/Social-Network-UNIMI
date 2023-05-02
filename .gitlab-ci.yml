@@ -1,19 +1,16 @@
+stages:
+  - test
+
 default:
-  image: ubuntu:22.04
-  cache:
-    paths:
-      - ~/.cache/pip/
+  image: python:3.10
   before_script:
-    - apt -y update
-    - apt -y install apt-utils
-    - apt -y install net-tools python3.10 python3-pip
-    - apt -y upgrade
     - pip3 install -r requirements.txt
 
-test-master:
+test-ex1:
   stage: test
   script:
     - cd socialfsd
     - python3 manage.py makemigrations
     - python3 manage.py migrate
     - python3 manage.py check
+    - python3 manage.py test ex1
