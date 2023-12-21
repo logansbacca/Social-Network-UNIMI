@@ -19,3 +19,10 @@ class Post(models.Model):
     
     def __str__(self):
         return f'{self.author}, {self.text}'
+    
+class Friendship(models.Model):
+    requester = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='%(class)s_requester')
+    addressee = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='%(class)s_addressee')
+        
+    def __str__(self):
+        return f'{self.requester.username}(requester) <--> {self.addressee.username}'
