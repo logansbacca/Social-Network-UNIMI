@@ -1,39 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Include Tailwind CSS -->
+{% block content %}
+    {% load static %}
+    
+    <!-- Link Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <title>Login</title>
-</head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
-    <div class="bg-white p-8 rounded shadow-md w-full sm:w-96">
-        <h1 class="text-2xl font-bold mb-4 text-center">Login</h1>
-
-        <form action="{% url 'login' %}" method="POST" class="space-y-4">
-            {% csrf_token %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="{% if message.tags == 'error' %}text-red-500{% else %}text-green-500{% endif %}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
-            <div class="flex flex-col space-y-2">
-                <label for="email" class="text-sm font-medium">E-mail:</label>
-                <input type="email" name="email" id="email" value="{{ request.POST.email }}"
-                       class="border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500">
+    
+    <!-- Link other stylesheets -->
+    <link rel="stylesheet" href="{% static 'intro/css/main.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Satisfy">
+    
+    <div id="wrapper">
+        <div class="main-content">
+            <div class="header">
+                <img class="logo" src="{% static 'intro/img/logo.png' %}" />
             </div>
-            <div class="flex flex-col space-y-2">
-                <label for="password" class="text-sm font-medium">Password:</label>
-                <input type="password" name="password" id="password"
-                       class="border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500">
+            <div class="l-part bg-gray-50 py-6 px-4 rounded-md">
+                <!-- Apply Tailwind classes for form styling -->
+                <form action="{% url 'login' %}" method="post" class="space-y-4">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="submit" value="Log in" class="btn" />
+                </form>
+                {% if form.error %}
+                    <p>Your username and password didn't match. Please try again.</p>
+                {% endif %}
             </div>
-            <button type="submit"
-                    class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">Submit
-            </button>
-        </form>
+        </div>
+        <div class="sub-content">
+            <div class="s-part">
+                Don't have an account?<a href="#">Sign up</a>
+            </div>
+        </div>
     </div>
-</body>
-</html>
+{% endblock %}

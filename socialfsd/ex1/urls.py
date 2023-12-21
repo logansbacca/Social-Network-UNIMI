@@ -10,6 +10,7 @@ urlpatterns = [
     # ex: /intro/login/
     path("login/", views.login, name="login"),
     path("logout/", views.logout, name="logout"),
+    path("register/", views.register, name="register"),
     # ex: /intro/matteo/
     path("user/<str:username>/", views.user, name="user"),
     # ex: /intro/5652/

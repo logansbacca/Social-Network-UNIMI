@@ -3,10 +3,8 @@ from django.http import Http404
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.views.decorators.http import require_http_methods
-from django.contrib import messages
-
 from .models import User, Post
-from .forms import LoginForm
+from .forms import LoginForm, UserForm
 
 
 @require_http_methods(["GET"])
@@ -61,11 +59,11 @@ def login(request):
                 return redirect("home")
             else:
                 form.add_error('password', "Wrong password")
-                messages.error(request, 'Wrong password')
+             
             
             if len(user_found) <= 0:
                 form.add_error('username', "User not found")
-                messages.error(request, 'User not found')
+            
             
             return render(request, "login.html", {"form": form})
 
@@ -81,3 +79,39 @@ def logout(request):
     except KeyError:
         pass
     return HttpResponse("You're logged out.")
+
+
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from .forms import UserForm
+from .models import User
+
+from django.shortcuts import render, redirect
+from django.urls import reverse  # Import reverse function
+from .forms import UserForm  # Import your UserForm
+from .models import User  # Import your User model
+
+def register(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            # Extract cleaned data from the form
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            bio = form.cleaned_data['bio']
+            password = form.cleaned_data['password']
+
+            # Create the user
+            user = User.objects.create(username=username, password=password, email=email, bio=bio)
+            user.save()
+
+            # Redirect to login page upon successful registration
+            return redirect(reverse('login'))  # Redirect to the login URL
+        else:
+            return render(request, "register.html", {'form': form})
+    else:
+        form = UserForm()
+    
+    # Render the form on initial load or when form method is not POST
+    return render(request, "register.html", {'form': form})
+

@@ -3,46 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to your Tailwind CSS file -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        .error{
+        /* Additional styling */
+        .error {
             color: red;
         }
 
-        .success{
+        .success {
             color: rgb(11, 68, 11);
         }
     </style>
     <title>Register</title>
+    
 </head>
-<body>
-    <h1>
-        Register
-    </h1>
+<body class="  flex justify-center items-center h-screen">
+    <div class=" bg-gray-50 max-w-md w-full p-6 rounded shadow-md overflow-y-scroll max-h-80">
+        <h1 class="text-2xl font-bold mb-4">Register</h1>
+        {% if form.errors %}
+                <p class="text-red-500 text-xs italic text-center">There was an error submitting your registration request</p>
+            {% endif %}
 
-    <form action="{% url 'login' %}" method="POST">
-        {% if messages %}
-			{% for message in messages %}
-				<div class="{{message.tags}}">
-					{{ message }}
-				</div>
-			{% endfor %}
-		{% endif %}
-        <label for="username"> Username: </label>
-        <input type="text" name="username" id="" value="{{request.POST.username}}">
+        <form action="{% url 'register' %}" method="POST" class=" space-y-4">
+            {% csrf_token %}
 
-        <label for="email"> E-mail: </label>
-        <input type="email" name="email" id="" value="{{request.POST.email}}">
+            <div>
+                <label for="username" class="block">Username:</label>
+                <input type="text" name="username" id="username" value="{{ request.POST.username }}" class="border border-gray-300 rounded px-4 py-2 w-full">
+            </div>
 
-        <label for="bio"> Bio: </label>
-        <textarea name="bio" id="" cols="30" rows="10" value="{{request.POST.bio}}"></textarea>
+            <div>
+                <label for="email" class="block">E-mail:</label>
+                <input type="email" name="email" id="email" value="{{ request.POST.email }}" class="border border-gray-300 rounded px-4 py-2 w-full">
+            </div>
 
-        <label for="password1"> Password: </label>
-        <input type="password" name="password1" id="">
+            <div>
+                <label for="bio" class="block">Bio:</label>
+                <textarea name="bio" id="bio" cols="30" rows="5" class="border border-gray-300 rounded px-4 py-2 w-full">{{ request.POST.bio }}</textarea>
+            </div>
 
-        <label for="password2"> Repeat Password: </label>
-        <input type="password" name="password2" id="">
+            <div>
+                <label for="password" class="block">Password:</label>
+                <input type="password" name="password" id="password" class="border border-gray-300 rounded px-4 py-2 w-full">
+            </div>
 
-        <input type="submit" value="Submit">
-    </form>
+           
+
+            <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+
+            
+        </form>
+    </div>
 </body>
 </html>
