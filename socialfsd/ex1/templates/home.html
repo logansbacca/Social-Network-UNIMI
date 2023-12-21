@@ -1,0 +1,24 @@
+{% block content %}
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'intro/css/main.css' %}">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Satisfy">
+
+<div id="wrapper-posts">
+    <h1>Welcome {{ username }} enjoy your feed</h1>
+    <div class="main-posts">
+        <div class="row">
+            {% for p in posts %}
+            <div class="card">
+                <p>{{ p.text | safe }}</p>
+                <br>
+                <i>- {{ p.author }}</i>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

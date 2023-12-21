@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .error{
+            color: red;
+        }
+
+        .success{
+            color: rgb(11, 68, 11);
+        }
+    </style>
+    <title>Register</title>
+</head>
+<body>
+    <h1>
+        Register
+    </h1>
+
+    <form action="{% url 'login' %}" method="POST">
+        {% if messages %}
+			{% for message in messages %}
+				<div class="{{message.tags}}">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endif %}
+        <label for="username"> Username: </label>
+        <input type="text" name="username" id="" value="{{request.POST.username}}">
+
+        <label for="email"> E-mail: </label>
+        <input type="email" name="email" id="" value="{{request.POST.email}}">
+
+        <label for="bio"> Bio: </label>
+        <textarea name="bio" id="" cols="30" rows="10" value="{{request.POST.bio}}"></textarea>
+
+        <label for="password1"> Password: </label>
+        <input type="password" name="password1" id="">
+
+        <label for="password2"> Repeat Password: </label>
+        <input type="password" name="password2" id="">
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

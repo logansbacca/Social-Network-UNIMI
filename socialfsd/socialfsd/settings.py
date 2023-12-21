@@ -55,7 +55,7 @@ ROOT_URLCONF = 'socialfsd.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,6 +79,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+
+# Mensagens:
+from django.contrib.messages import constants
+
+MESSAGE_TAGS = {
+    constants.ERROR: 'error',
+    constants.SUCCESS: 'success',
 }
 
 

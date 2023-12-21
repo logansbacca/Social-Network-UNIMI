@@ -1,16 +1,21 @@
 from django.db import models
+# from django.contrib.auth.models import User
 
 class User(models.Model):
-    username = models.CharField(max_length=200)
-    password = models.CharField(max_length=200)
+    bio = models.TextField(default='', max_length=200, verbose_name='Bio')
+    username = models.CharField(default='', max_length=200, verbose_name='Username')
+    password = models.CharField(default='', max_length=200, verbose_name='Password')
+    email = models.EmailField(default='', max_length=200, verbose_name='E-mail')
     
     def __str__(self):
-        return f'{self.username}'
+        return self.username
 
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    text = models.CharField(max_length=200)
+    text = models.TextField(max_length=2000)
+    date = models.DateTimeField(auto_now=True, verbose_name='Date')
+    view_counter = models.IntegerField(default=0, verbose_name='View Counter')
     
     def __str__(self):
         return f'{self.author}, {self.text}'
