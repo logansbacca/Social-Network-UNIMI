@@ -7,9 +7,6 @@ from .models import User, Post
 from .forms import LoginForm, UserForm
 
 
-@require_http_methods(["GET"])
-def index(request):
-    return redirect("home") # home is a view name
 
 def home(request):
     try:

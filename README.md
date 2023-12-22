@@ -16,7 +16,7 @@ Starting server:
 * `cd socialfsd`
 * `python manage.py migrate`
 * `python manage.py runserver`
-* Check that everything is good at http://localhost:8000/
+
 
 ## Exercise 1 (deadline: 16/05/23)
 **Task 1**: Create your own Django app with a minimal UI following this tutorial: https://docs.djangoproject.com/en/1.8/intro/tutorial01/.
@@ -39,4 +39,17 @@ For detailed webapp behavior you can check `ex1/tests/tests.py`, tests are trigg
 ---
 
 # Lab 2
-TBD...
+Task 2: Expand the ACL system to handle a single deny policy on a target post. Here's a simple example:
+
+Alice has posted the post P.
+Bob is friends with Alice.
+Alice wants to hide Post P from Bob.
+
+Add some records using the admin page to test the functionalities.
+You can find some hint by checkout the branch intro for a brief introduction git checkout acl
+
+Endpoints
+
+GET /ex2/home/: show home page, the view must contain the posts of other user in Friendship relation (except for deny policy).
+GET /ex2/post/{post_id}/: show post with id post_id only if there is a Friendship relation otherwise the page must contain "Access deny".
+GET /ex2/user/{username}/: show user page only if there is a Friendship relation otherwise the page must contain "{username} is not your friend".
