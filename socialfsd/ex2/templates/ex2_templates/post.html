@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 p-8">
+    <div class="max-w-lg mx-auto bg-white p-6 rounded-md shadow-md">
+        <p class="text-lg mb-4">{{ post.text | safe }}</p>
+        <a href="{% url 'ex2:user' post.author.username %}" class="text-blue-600 hover:underline">- {{ post.author }}</a>
+        <p class="text-gray-500 text-sm">{{ post.view_counter }}</p>
+        <a href="{% url 'ex2:home' %}" class="block mt-4 text-blue-600 hover:underline">Home</a>
+    </div>
+</body>
+
+</html>

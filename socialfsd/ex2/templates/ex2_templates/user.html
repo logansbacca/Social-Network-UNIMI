@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 p-8">
+    <div class="max-w-lg mx-auto bg-white p-6 rounded-md shadow-md">
+        <h1 class="text-3xl font-bold mb-4">
+            User {{user.username}}
+        </h1>
+        <p class="text-lg mb-4">{{ user.bio | safe }}</p>
+        <i class="block italic text-sm mb-2">- {{ bio.email }}</i>
+        <a href="{% url 'ex2:home' %}" class="block mt-4 text-blue-600 hover:underline">Home</a>
+    </div>
+</body>
+
+</html>

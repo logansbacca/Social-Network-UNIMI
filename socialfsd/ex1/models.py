@@ -16,7 +16,8 @@ class Post(models.Model):
     text = models.TextField(max_length=2000)
     date = models.DateTimeField(auto_now=True, verbose_name='Date')
     view_counter = models.IntegerField(default=0, verbose_name='View Counter')
-    
+    friendship = models.BooleanField(default=False, verbose_name='FriendShip')
+
     def __str__(self):
         return f'{self.author}, {self.text}'
     
