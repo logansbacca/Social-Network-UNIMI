@@ -24,7 +24,7 @@ def home(request):
            return render(request, 'ex2_templates/home.html', {'posts': _friend_posts, 'username': username})
         
     except KeyError:
-        return HttpResponse("home page, not logged, go to login/")
+        return HttpResponse("home page, not logged, go to login")
     
 
 
