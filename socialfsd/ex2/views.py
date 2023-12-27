@@ -42,10 +42,10 @@ def post(request, post_id):
            friends_addressee = [friend.addressee for friend in friendships]
 
            if friend_post.author not in friends_addressee:
-                raise HttpResponse("Post does not exist or you don't have permission to view this post")
+                return HttpResponse("Post does not exist or you don't have permission to view this post")
 
     except Exception:
-        raise HttpResponse("Post does not exist or you don't have permission to view this post")
+        return HttpResponse("Post does not exist or you don't have permission to view this post")
     return render(request, "ex2_templates/post.html", {"post": p})
 
 
@@ -59,6 +59,6 @@ def user(request, username):
            friendships = Friendship.objects.get(requester=user_id, addressee=user)
 
     except Exception:
-        raise HttpResponse("You don't have permission to view this user")
+        return HttpResponse("You don't have permission to view this user")
     return render(request, "ex2_templates/user.html", {"user": user})
     

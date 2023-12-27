@@ -12,7 +12,7 @@
 <body class="bg-gray-100 p-8">
     <div class="max-w-lg mx-auto bg-white p-6 rounded-md shadow-md">
         <h1 class="text-3xl font-bold mb-4">
-            User {{user.username}}
+            {{user.username|upper}}'S PROFILE
         </h1>
         <p class="text-lg mb-4">{{ user.bio | safe }}</p>
         <i class="block italic text-sm mb-2">- {{ bio.email }}</i>

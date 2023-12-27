@@ -2,12 +2,13 @@
 
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'intro/css/main.css' %}">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Satisfy">
+<link href="{% static 'intro/css/main.css' %}" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
+<!-- Include the Tailwind CSS CDN link or reference your locally compiled Tailwind CSS file -->
+<link href="https://cdn.tailwindcss.com/your-version/tailwind.min.css" rel="stylesheet">
 
 <div id="wrapper-posts" class="bg-gray-100 p-8">
-    <h1 class="text-3xl font-semibold mb-6">Welcome {{ username }}, enjoy your feed</h1>
+    <h1 class="text-3xl font-semibold mb-6">Welcome {{ username|upper }}, enjoy your feed</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {% for p in posts %}
             <div class="bg-white p-4 rounded-lg shadow-md">
